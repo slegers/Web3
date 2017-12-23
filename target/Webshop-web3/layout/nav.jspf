@@ -1,0 +1,16 @@
+
+<nav>
+    <ul>
+        <li><a href="ShopController?action=homepage">Home</a></li>
+        <li> <a href="ShopController?action=person/create">Sign up</a></li>
+
+        <c:choose>
+            <c:when test="${sessionScope.loginUser.rol == 'ADMIN'}">
+                <li><a href="ShopController?action=product/overview">Products</a></li>
+                <li><a href="ShopController?action=person/overview">Users</a></li>
+                <li><a href="ShopController?action=product/=create">Add Product</a></li>
+            </c:when>
+        </c:choose>
+
+    </ul>
+</nav>
