@@ -1,5 +1,7 @@
-package model.db;
+package model.db.memory;
 
+import model.db.DbException;
+import model.db.dbPersonInterface;
 import model.domain.Person;
 
 import java.util.ArrayList;
@@ -7,21 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PersonDbInMemory {
-	private Map<String, Person> persons = new HashMap<String, Person>();
+public class PersonDbInMemory implements dbPersonInterface {
+	private Map<Integer, Person> persons = new HashMap<Integer, Person>();
 	
 	public PersonDbInMemory () {
-		Person administrator = new Person("admin", "admin@ucll.be", "t", "Ad", "Ministrator");
-		Person administrator2 = new Person("admin2", "admin2@ucll.be", "t2", "Ad2", "Ministrato2r");
+		Person administrator = new Person(1, "admin@ucll.be", "t", "Ad", "Ministrator");
+		Person administrator2 = new Person(2, "admin2@ucll.be", "t2", "Ad2", "Ministrato2r");
 
 		add(administrator);
 		add(administrator2);
 
 	}
 	
-	public Person get(String personId){
-		if(personId == null){
-			throw new DbException("No id given");
+	public Person get(int personId){
+		if(!persons.containsKey(personId)){
+			throw new DbException("the given id doens't exist in our database.");
 		}
 		return persons.get(personId);
 	}

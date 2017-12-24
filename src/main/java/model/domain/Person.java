@@ -4,13 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Person {
-	private String userid;
+	private int userid;
 	private String email;
 	private String password;
 	private String firstName;
 	private String lastName;
 
-	public Person(String userid, String email, String password, String firstName, String lastName) {
+	public Person(int userid, String email, String password, String firstName, String lastName) {
 		setUserid(userid);
 		setEmail(email);
 		setPassword(password);
@@ -21,14 +21,11 @@ public class Person {
 	public Person() {
 	}
 
-	public String getUserid() {
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUserid(String userid) {
-		if(userid.isEmpty()){
-			throw new IllegalArgumentException("No userid given");
-		}
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 

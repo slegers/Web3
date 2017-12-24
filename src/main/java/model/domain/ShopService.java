@@ -1,7 +1,7 @@
 package model.domain;
 
-import model.db.PersonDbInMemory;
-import model.db.ProductDbInMemory;
+import model.db.memory.PersonDbInMemory;
+import model.db.memory.ProductDbInMemory;
 
 import java.util.List;
 
@@ -36,5 +36,9 @@ public class ShopService {
 
 	private PersonDbInMemory getPersonDb() {
 		return personDb;
+	}
+
+	public Object getProducts() {
+		return productDb.getAll();
 	}
 }

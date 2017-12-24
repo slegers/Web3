@@ -49,6 +49,9 @@ public class ShopController extends HttpServlet {
                 case "register":
                     handler = new RegisterHandler(service);
                     break;
+                case "productOverview":
+                    handler = new ProductOverviewHandler(service);
+                    break;
                 default:
                     handler = new HomeHandler(service);
                     break;

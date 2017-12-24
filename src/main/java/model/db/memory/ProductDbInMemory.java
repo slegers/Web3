@@ -1,5 +1,7 @@
-package model.db;
+package model.db.memory;
 
+import model.db.DbException;
+import model.db.dbProductInterface;
 import model.domain.Product;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ProductDbInMemory {
+public class ProductDbInMemory implements dbProductInterface {
 	private Map<Integer, Product> records = new HashMap<Integer, Product>();
 	
 	public ProductDbInMemory () {
@@ -22,8 +24,9 @@ public class ProductDbInMemory {
 		}
 		return records.get(id);
 	}
-	
-	public List<Product> getAll(){
+
+
+	public ArrayList<Product> getAll(){
 		return new ArrayList<Product>(records.values());	
 	}
 
@@ -48,7 +51,12 @@ public class ProductDbInMemory {
 		}
 		records.put(product.getProductId(), product);
 	}
-	
+
+	@Override
+	public void delete(String productId) {
+
+	}
+
 	public void delete(int id){
 		if(id < 0){
 			throw new DbException("No valid id given");
