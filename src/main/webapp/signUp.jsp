@@ -28,8 +28,6 @@ Sign Up
 
     <form method="post" action="" novalidate="novalidate">
     	<!-- novalidate in order to be able to run tests correctly -->
-        <p><label for="userid">User id</label><input type="text" id="userid" name="userid"
-         required value=""> </p>
         <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
          required value=""> </p>
         <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"

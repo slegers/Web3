@@ -2,10 +2,7 @@ package ui.controller;
 
 import model.domain.DomainException;
 import model.domain.ShopService;
-import ui.controller.handler.HomeHandler;
-import ui.controller.handler.PersonOverviewHandler;
-import ui.controller.handler.ShopServiceRequestHandler;
-import ui.controller.handler.SignUpPageHandler;
+import ui.controller.handler.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,11 +41,14 @@ public class ShopController extends HttpServlet {
                 case "home":
                     handler = new HomeHandler(service);
                     break;
-                case "p":
+                case "personOverview":
                     handler = new PersonOverviewHandler(service);
                     break;
                 case "signUpPage":
                     handler = new SignUpPageHandler(service);
+                    break;
+                case "register":
+                    handler = new RegisterHandler(service);
                     break;
                 default:
                     handler = new HomeHandler(service);
