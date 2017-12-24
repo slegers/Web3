@@ -7,10 +7,11 @@ import java.util.List;
 
 
 public class ShopService {
-	private PersonDbInMemory personDb = new PersonDbInMemory();
-	private ProductDbInMemory productDb = new ProductDbInMemory();
+	private PersonDbInMemory personDb;
+	private ProductDbInMemory productDb;
 	public ShopService(){
-
+		personDb = new PersonDbInMemory();
+		productDb = new ProductDbInMemory();
 	}
 	
 	public Person getPerson(String personId) {

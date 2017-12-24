@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -20,16 +22,20 @@ Sign Up
 </h2>
 
 </header><main>
-	<div class="alert-danger">
-		<ul>
-			<li>Some error</li>
-		</ul>
-	</div>
+    <c:if test="${fouten != null}">
+        <div class="alert-danger">
+            <ul>
+                <c:forEach items="${fouten}" var="fout">
+                    <li>${fout}</li>
+                </c:forEach>
 
-    <form method="post" action="" novalidate="novalidate">
+            </ul>
+        </div>
+    </c:if>
+
+
+    <form method="post" action="ShopController?action=register" novalidate="novalidate">
     	<!-- novalidate in order to be able to run tests correctly -->
-        <p><label for="userid">User id</label><input type="text" id="userid" name="userid"
-         required value=""> </p>
         <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
          required value=""> </p>
         <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"

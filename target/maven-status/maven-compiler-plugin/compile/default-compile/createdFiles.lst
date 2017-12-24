@@ -1,6 +1,6 @@
 model/domain/Person.class
-model/domain/Product.class
 model/domain/DomainException.class
 ui/controller/ShopController.class
+model/domain/Product.class
 model/domain/ShopService.class
 model/db/DbException.class

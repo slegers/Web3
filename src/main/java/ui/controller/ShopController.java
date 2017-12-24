@@ -36,7 +36,6 @@ public class ShopController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             ShopServiceRequestHandler handler = null;
-            System.out.println(action);
             switch (action){
                 case "home":
                     handler = new HomeHandler(service);

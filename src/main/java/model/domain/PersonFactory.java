@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 public class PersonFactory {
 
-    public PersonFactory(){
-        
-    }
-    
     public Person create(HttpServletRequest request, ArrayList<String> fouten){
         Person p = new Person();
         processFirstName(p,request,fouten);
@@ -34,7 +30,7 @@ public class PersonFactory {
 
     private void processEmail(Person p, HttpServletRequest request, ArrayList<String> fouten) {
         try{
-            p.setPassword(request.getParameter("email"));
+            p.setEmail(request.getParameter("email"));
         }catch (NullPointerException e){
             fouten.add(e.getMessage());
         }catch (IllegalArgumentException e){
@@ -46,7 +42,7 @@ public class PersonFactory {
 
     private void processFirstName(Person p, HttpServletRequest request, ArrayList<String> fouten) {
         try{
-            p.setPassword(request.getParameter("firstName"));
+            p.setFirstName(request.getParameter("firstName"));
         }catch (NullPointerException e){
             fouten.add(e.getMessage());
         }catch (IllegalArgumentException e){
@@ -58,7 +54,7 @@ public class PersonFactory {
 
     private void processLastName(Person p, HttpServletRequest request, ArrayList<String> fouten) {
         try{
-            p.setPassword(request.getParameter("lastName"));
+            p.setLastName(request.getParameter("lastName"));
         }catch (NullPointerException e){
             fouten.add(e.getMessage());
         }catch (IllegalArgumentException e){
