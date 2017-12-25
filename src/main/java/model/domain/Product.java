@@ -31,7 +31,7 @@ public class Product {
 		return name;
 	}
 	public void setName(String name) {
-		if (name.isEmpty()) {
+		if (name == null || name.isEmpty()) {
 			throw new DomainException("No name given");
 		}
 		this.name = name;
@@ -40,7 +40,7 @@ public class Product {
 		return description;
 	}
 	public void setDescription(String description) {
-		if (description.isEmpty()) {
+		if (description == null || description.isEmpty()) {
 			throw new DomainException("No description given");
 		}
 		

@@ -3,6 +3,7 @@
         <li id="actual"><a href="ShopController?action=home">Home</a></li>
         <li><a href="ShopController?action=personOverview">User Overview</a></li>
         <li><a href="ShopController?action=productOverview">Product Overview</a></li>
+        <li><a href="ShopController?action=addProduct">add Product</a></li>
         <li><a href="ShopController?action=signUpPage">Sign up</a></li>
     </ul>
 </nav>

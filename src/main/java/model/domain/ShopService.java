@@ -41,4 +41,8 @@ public class ShopService {
 	public Object getProducts() {
 		return productDb.getAll();
 	}
+
+	public void addProduct(Product p) {
+		productDb.add(p);
+	}
 }
