@@ -1,8 +1,0 @@
-<c:if test="${sessionScope.loginUser.rol == 'ADMIN'}">
-    <label for="rol">Rol:</label>
-    <select name="rol" id="rol" <c:if test="${sessionScope.loginUser.rol != 'ADMIN' ||
-    sessionScope.loginUser.dbUserId == user.dbUserId}">disabled </c:if>>
-        <option <c:if test="${user.rol != 'ADMIN'}">selected</c:if> value="customer">Customer</option>
-        <option <c:if test="${user.rol == 'ADMIN'}">selected</c:if> value="admin">admin</option>
-</select>
-</c:if>
