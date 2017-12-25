@@ -16,5 +16,6 @@ public class ProductOverviewHandler extends ShopServiceRequestHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("products",getShopService().getProducts());
+        request.getRequestDispatcher("productOverview.jsp").forward(request,response);
     }
 }

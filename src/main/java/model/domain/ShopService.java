@@ -14,7 +14,7 @@ public class ShopService {
 		productDb = new ProductDbInMemory();
 	}
 	
-	public Person getPerson(String personId) {
+	public Person getPerson(int personId) {
 		return getPersonDb().get(personId);
 	}
 

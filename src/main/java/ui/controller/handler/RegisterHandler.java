@@ -1,5 +1,6 @@
 package ui.controller.handler;
 
+import model.db.DbException;
 import model.domain.Person;
 import model.domain.PersonFactory;
 import model.domain.ShopService;
@@ -22,8 +23,13 @@ public class RegisterHandler extends ShopServiceRequestHandler {
         ArrayList<String> fouten = new ArrayList<>();
         Person p = factory.create(request,fouten);
 
-        if(fouten.size() == 0){
+        try{
             getShopService().addPerson(p);
+        }catch (DbException e){
+            fouten.add(e.getMessage());
+        }
+
+        if(fouten.size() == 0){
             response.sendRedirect("/ShopController?action=home");
 
         }else{

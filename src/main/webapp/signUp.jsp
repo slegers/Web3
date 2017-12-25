@@ -36,6 +36,8 @@ Sign Up
 
     <form method="post" action="ShopController?action=register" novalidate="novalidate">
     	<!-- novalidate in order to be able to run tests correctly -->
+        <p><label for="id">id</label><input type="number" id="id" name="id"
+                                                           required value=""> </p>
         <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
          required value=""> </p>
         <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"

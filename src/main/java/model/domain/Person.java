@@ -26,6 +26,9 @@ public class Person {
 	}
 
 	public void setUserid(int userid) {
+		if(userid < 1){
+			throw new IllegalArgumentException("A person Id should be strict id.");
+		}
 		this.userid = userid;
 	}
 
