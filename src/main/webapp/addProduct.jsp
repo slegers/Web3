@@ -33,15 +33,19 @@
         </div>
     </c:if>
 
-
-    <form method="post" action="ShopController?action=registerProduct" novalidate="novalidate">
+    <c:if test="${product == null}">
+        <form method="post" action="ShopController?action=registerProduct" novalidate="novalidate">
+    </c:if>
+        <c:if test="${product != null}">
+            <form method="post" action="ShopController?action=updateProduct&id=${product.productId}" novalidate="novalidate">
+     </c:if>
         <!-- novalidate in order to be able to run tests correctly -->
         <p><label for="name">Name</label><input type="text" id="name" name="name"
-                                                           required value=""> </p>
+                                                           required value="${product.name}"> </p>
         <p><label for="description">Description</label><input type="text" id="description" name="description"
-                                                         required value=""> </p>
+                                                         required value="${product.description}"> </p>
         <p><label for="price">Price</label><input type="number" id="price" name="price"
-                                                              required value=""> </p>
+                                                              required value="${product.price}"> </p>
         <p><input type="submit" id="signUp" value="Sign Up"></p>
 
     </form>

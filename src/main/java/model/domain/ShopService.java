@@ -38,11 +38,19 @@ public class ShopService {
 		return personDb;
 	}
 
-	public Object getProducts() {
+	public List<Product> getProducts() {
 		return productDb.getAll();
 	}
 
 	public void addProduct(Product p) {
 		productDb.add(p);
 	}
+
+    public Product getProduct(int id) {
+		return productDb.get(id);
+    }
+
+    public void removeProduct(int productId) {
+		productDb.delete(productId);
+    }
 }

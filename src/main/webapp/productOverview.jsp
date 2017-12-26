@@ -24,7 +24,7 @@
             </tr>
             <c:forEach var="product" items="${products}">
                 <tr>
-                    <td>${product.name}</td>
+                    <td><a href="/ShopController?action=updateProductPage&id=${product.productId}"> ${product.name} </a></td>
                     <td>${product.description}</td>
                     <td>${product.price}</td>
                 </tr>
