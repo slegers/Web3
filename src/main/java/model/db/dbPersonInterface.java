@@ -13,5 +13,5 @@ public interface dbPersonInterface {
 
     void update(Person person);
 
-    void delete(String personId);
+    void delete(int personId);
 }

@@ -30,7 +30,7 @@ public class ShopService {
 		getPersonDb().update(person);
 	}
 
-	public void deletePerson(String id) {
+	public void deletePerson(int id) {
 		getPersonDb().delete(id);
 	}
 

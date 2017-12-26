@@ -70,6 +70,12 @@ public class ShopController extends HttpServlet {
                 case "deleteProduct":
                     handler = new deleteProduct(service);
                     break;
+                case "deletePersonPage":
+                    handler = new deletePersonPage(service);
+                    break;
+                case "deletePerson":
+                    handler = new deletePerson(service);
+                    break;
                 default:
                     handler = new HomeHandler(service);
                     break;

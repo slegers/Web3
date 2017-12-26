@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.controller.handler;
 
 import model.domain.DomainException;
 import model.domain.ShopService;

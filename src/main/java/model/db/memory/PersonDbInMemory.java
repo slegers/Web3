@@ -52,10 +52,7 @@ public class PersonDbInMemory implements dbPersonInterface {
 		persons.put(person.getUserid(), person);
 	}
 	
-	public void delete(String personId){
-		if(personId == null){
-			throw new DbException("No id given");
-		}
+	public void delete(int personId){
 		persons.remove(personId);
 	}
 }
