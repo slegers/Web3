@@ -50,7 +50,7 @@ public class ShopService {
 		return productDb.get(id);
     }
 
-    public void removeProduct(int productId) {
-		productDb.delete(productId);
-    }
+	public void deleteProduct(int id) {
+		productDb.delete(id);
+	}
 }

@@ -23,7 +23,7 @@ public class UpdateProduct extends ShopServiceRequestHandler {
         Product p = factory.create(request,fouten);
         try{
             p.setProductId(Integer.parseInt(request.getParameter("id")));
-            getShopService().removeProduct(p.getProductId());
+            getShopService().deleteProduct(p.getProductId());
             getShopService().addProduct(p);
         }catch (NullPointerException e){
             fouten.add("The product id isn't know to our database.");
