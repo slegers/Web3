@@ -231,3 +231,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,vim,java,linux,maven,windows,intellij,intellij+iml,intellij+all
+/src/main/webapp/WEB-INF/web.xml
+src/main/resources/

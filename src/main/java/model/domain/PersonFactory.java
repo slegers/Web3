@@ -1,9 +1,28 @@
 package model.domain;
 
+import model.db.DbException;
+
 import javax.servlet.http.HttpServletRequest;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PersonFactory {
+
+    public PersonFactory(ResultSet result) {
+        Person p = new Person();
+        try {
+            p.setUserid(Integer.parseInt(result.getString("persoon_id")));
+            p.setEmail(result.getString("email"));
+            p.setFirstName(result.getString("fname"));
+            p.setLastName(result.getString("lname"));
+            p.setPassword(result.getString("password"));
+        } catch (SQLException e) {
+            throw new DbException("Couldn't retrieve the persoon_id");
+        } catch (NumberFormatException e){
+            throw new DbException("The persoon_id couldn't be converted to an integer");
+        }
+    }
 
     public Person create(HttpServletRequest request, ArrayList<String> fouten){
         Person p = new Person();
