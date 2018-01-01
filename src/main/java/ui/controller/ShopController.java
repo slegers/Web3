@@ -25,7 +25,7 @@ public class ShopController extends HttpServlet {
         } catch (ServletException e) {
             e.printStackTrace();
         }
-        service = new ShopService();
+        service = new ShopService(getServletContext());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {

@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class PersonFactory {
 
-    public PersonFactory(ResultSet result) {
+
+    public Person create(ResultSet result){
         Person p = new Person();
         try {
             p.setUserid(Integer.parseInt(result.getString("persoon_id")));
@@ -21,7 +22,10 @@ public class PersonFactory {
             throw new DbException("Couldn't retrieve the persoon_id");
         } catch (NumberFormatException e){
             throw new DbException("The persoon_id couldn't be converted to an integer");
+        }catch (NullPointerException e){
+            throw new DbException(e.getMessage());
         }
+        return p;
     }
 
     public Person create(HttpServletRequest request, ArrayList<String> fouten){

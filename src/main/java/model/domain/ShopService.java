@@ -1,16 +1,21 @@
 package model.domain;
 
+import model.db.dbPersonInterface;
 import model.db.memory.PersonDbInMemory;
 import model.db.memory.ProductDbInMemory;
+import model.db.sql.PersonSqlDb;
 
+import javax.servlet.ServletContext;
 import java.util.List;
 
 
 public class ShopService {
-	private PersonDbInMemory personDb;
+	private dbPersonInterface personDb;
 	private ProductDbInMemory productDb;
-	public ShopService(){
-		personDb = new PersonDbInMemory();
+	public ShopService(ServletContext context){
+	//	personDb = new PersonDbInMemory();
+	//	productDb = new ProductDbInMemory();
+		personDb = new PersonSqlDb(context);
 		productDb = new ProductDbInMemory();
 	}
 	
@@ -26,15 +31,12 @@ public class ShopService {
 		getPersonDb().add(person);
 	}
 
-	public void updatePersons(Person person) {
-		getPersonDb().update(person);
-	}
 
 	public void deletePerson(int id) {
 		getPersonDb().delete(id);
 	}
 
-	private PersonDbInMemory getPersonDb() {
+	private dbPersonInterface getPersonDb() {
 		return personDb;
 	}
 
