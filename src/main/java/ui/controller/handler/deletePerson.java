@@ -18,9 +18,8 @@ public class deletePerson extends ShopServiceRequestHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             getShopService().deletePerson(Integer.parseInt(request.getParameter("id")));
+            response.sendRedirect("/ShopController?action=personOverview");
         }catch (NumberFormatException e){
             throw new DomainException("The given product id cant be found.");
-        }
-        response.sendRedirect("/ShopController?action=personOverview");
-    }
+        } }
 }

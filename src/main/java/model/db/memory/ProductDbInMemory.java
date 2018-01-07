@@ -52,11 +52,6 @@ public class ProductDbInMemory implements dbProductInterface {
 		records.put(product.getProductId(), product);
 	}
 
-	@Override
-	public void delete(String productId) {
-
-	}
-
 	public void delete(int id){
 		if(id < 0){
 			throw new DbException("No valid id given");

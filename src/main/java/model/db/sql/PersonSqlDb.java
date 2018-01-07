@@ -4,6 +4,8 @@ import model.db.DbException;
 import model.db.dbPersonInterface;
 import model.domain.Person;
 import model.domain.PersonFactory;
+import model.domain.Product;
+import model.domain.ProductFactory;
 
 import javax.servlet.ServletContext;
 import javax.validation.constraints.Null;
@@ -37,15 +39,13 @@ public class PersonSqlDb implements dbPersonInterface {
             preparedStatement.setInt(1,personId);
             result = preparedStatement.executeQuery();
             PersonFactory factory = new PersonFactory();
-             return  factory.create(result);
+            result.next();
+            Person p = factory.create(result);
+            preparedStatement.close();
+            connection.close();
+            return  p;
         } catch (SQLException e) {
-            throw new DbException("Couldn't get this specific person");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new DbException("Couldn't close the database connection for this specific person");
-            }
+            throw new DbException("Couldn't get this specific person " + e.getMessage());
         }
     }
 
@@ -54,29 +54,40 @@ public class PersonSqlDb implements dbPersonInterface {
         try{
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,properties);
-            preparedStatement = connection.prepareStatement("SELECT * FROM persoon");
+            preparedStatement = connection.prepareStatement("Select * from persoon");
             result = preparedStatement.executeQuery();
+            ArrayList<Person> list = new ArrayList<>();
             PersonFactory factory = new PersonFactory();
-            ArrayList<Person> p = new ArrayList<>();
-
             while(result.next()){
-                p.add(factory.create(result));
+                list.add(factory.create(result));
             }
-            return p;
-        }catch (DbException e){
+            preparedStatement.close();
+            connection.close();
+            return list;
+        } catch (ClassNotFoundException e) {
             throw new DbException(e.getMessage());
         } catch (SQLException e) {
-            throw new DbException(e.getMessage());
-        }catch (NullPointerException e){
-            throw new DbException("Er is geen connectie mogelijk met de DB.");
-        } catch (ClassNotFoundException e) {
             throw new DbException(e.getMessage());
         }
     }
 
     @Override
     public void add(Person person) {
-
+        try {
+            connection = DriverManager.getConnection(url,properties);
+            preparedStatement = connection.prepareStatement("INSERT INTO persoon(persoon_id,email,fname,lname,password,salt) values(?,?,?,?,?,?)");
+            preparedStatement.setInt(1,person.getUserid());
+            preparedStatement.setString(2,person.getEmail());
+            preparedStatement.setString(3,person.getFirstName());
+            preparedStatement.setString(4,person.getLastName());
+            preparedStatement.setString(5,person.getPassword());
+            preparedStatement.setString(6,person.getSalt());
+            preparedStatement.execute();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DbException("Couldn't get this specific person " + e.getMessage());
+        }
     }
 
     @Override
@@ -86,6 +97,15 @@ public class PersonSqlDb implements dbPersonInterface {
 
     @Override
     public void delete(int personId) {
-
+        try {
+            connection = DriverManager.getConnection(url,properties);
+            preparedStatement = connection.prepareStatement("DELETE FROM PERSOON where persoon_id = ?");
+            preparedStatement.setInt(1,personId);
+            preparedStatement.execute();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 }

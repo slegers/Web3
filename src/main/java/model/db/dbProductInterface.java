@@ -14,6 +14,6 @@ public interface dbProductInterface {
 
     void update(Product product);
 
-    void delete(String productId);
+    void delete(int productId);
 
 }

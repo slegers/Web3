@@ -1,6 +1,8 @@
 package model.domain;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProductFactory {
@@ -38,5 +40,19 @@ public class ProductFactory {
             fouten.add(e.getMessage());
         }
 
+    }
+
+    public Product create(ResultSet resultSet) {
+        Product p = new Product();
+        try{
+            p.setProductId(resultSet.getInt("id_product"));
+            p.setPrice(resultSet.getString("prijs"));
+            p.setDescription(resultSet.getString("omschrijving"));
+            p.setName(resultSet.getString("naam"));
+            return p;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

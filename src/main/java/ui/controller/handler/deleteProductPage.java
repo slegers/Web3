@@ -18,11 +18,12 @@ public class deleteProductPage extends ShopServiceRequestHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             int id = Integer.parseInt(request.getParameter("id"));
-            Product p = getShopService().getProduct(id);
-            request.setAttribute("product",p);
+            Product product = getShopService().getProduct(id);
+            request.setAttribute("product",product);
+            System.out.println(product.getProductId() + "  sdfqsdfqsdf");
+            request.getRequestDispatcher("confirmProductDelete.jsp").forward(request,response);
         }catch (NumberFormatException e){
             throw new DomainException("The given id isn't correct");
         }
-        request.getRequestDispatcher("confirmProductDelete.jsp").forward(request,response);
     }
 }

@@ -19,9 +19,9 @@ public class deleteProduct extends ShopServiceRequestHandler {
         try{
             int id = Integer.parseInt(request.getParameter("id"));
             getShopService().deleteProduct(id);
+            response.sendRedirect("/ShopController?action=productOverview");
         }catch (NumberFormatException e){
             throw new DomainException("The given product id cant be found.");
         }
-        response.sendRedirect("/ShopController?action=productOverview");
     }
 }

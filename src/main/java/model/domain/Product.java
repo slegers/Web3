@@ -59,7 +59,7 @@ public class Product {
 		if (price.isEmpty()) {
 			throw new DomainException("No price given");
 		}
-		setPrice(Double.valueOf(price));
+		setPrice(Double.parseDouble(price));
 	}
 	
 	@Override

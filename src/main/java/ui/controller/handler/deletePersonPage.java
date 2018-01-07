@@ -19,9 +19,9 @@ public class deletePersonPage extends ShopServiceRequestHandler {
             int id = Integer.parseInt(request.getParameter("id"));
             Person p = getShopService().getPerson(id);
             request.setAttribute("person",p);
+            request.getRequestDispatcher("confirmPersonDelete.jsp").forward(request,response);
         }catch (NumberFormatException e){
             throw new DomainException("The given id isn't correct");
         }
-        request.getRequestDispatcher("confirmPersonDelete.jsp").forward(request,response);
     }
 }

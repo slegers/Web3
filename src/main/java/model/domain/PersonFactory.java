@@ -3,9 +3,11 @@ package model.domain;
 import model.db.DbException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PersonFactory {
 
@@ -13,17 +15,18 @@ public class PersonFactory {
     public Person create(ResultSet result){
         Person p = new Person();
         try {
-            p.setUserid(Integer.parseInt(result.getString("persoon_id")));
+            p.setUserid(result.getInt("persoon_id"));
             p.setEmail(result.getString("email"));
             p.setFirstName(result.getString("fname"));
             p.setLastName(result.getString("lname"));
             p.setPassword(result.getString("password"));
+            p.setSalt(result.getString("salt"));
         } catch (SQLException e) {
-            throw new DbException("Couldn't retrieve the persoon_id");
+            throw new DbException("Couldn't retrieve the persoon_id" + e.getMessage());
         } catch (NumberFormatException e){
-            throw new DbException("The persoon_id couldn't be converted to an integer");
+            throw new DbException("The persoon_id couldn't be converted to an integer " + e.getMessage());
         }catch (NullPointerException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage() + "sf ");
         }
         return p;
     }
@@ -35,6 +38,8 @@ public class PersonFactory {
         processLastName(p,request,fouten);
         processEmail(p,request,fouten);
         processPassWord(p,request,fouten);
+        SecureRandom r = new SecureRandom();
+        p.setSalt(r.generateSeed(16));
         return p;
     }
 

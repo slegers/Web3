@@ -13,11 +13,12 @@ public class PersonDbInMemory implements dbPersonInterface {
 	private Map<Integer, Person> persons = new HashMap<Integer, Person>();
 	
 	public PersonDbInMemory () {
-		Person administrator = new Person(1, "admin@ucll.be", "t", "Ad", "Ministrator");
-		Person administrator2 = new Person(2, "admin2@ucll.be", "t2", "Ad2", "Ministrato2r");
+		//Person administrator = new Person(1, "admin@ucll.be", "t", "Ad", "Ministrator")
+		//
+		// Person administrator2 = new Person(2, "admin2@ucll.be", "t2", "Ad2", "Ministrato2r");
 
-		add(administrator);
-		add(administrator2);
+	//	add(administrator);
+	//	add(administrator2);
 
 	}
 	

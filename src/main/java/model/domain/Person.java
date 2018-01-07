@@ -1,5 +1,6 @@
 package model.domain;
 
+import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,13 +10,15 @@ public class Person {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String salt;
 
-	public Person(int userid, String email, String password, String firstName, String lastName) {
+	public Person(int userid, String email, String password, String firstName, String lastName,byte[] salt) {
 		setUserid(userid);
 		setEmail(email);
 		setPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
+		setSalt(salt);
 	}
 	
 	public Person() {
@@ -53,7 +56,7 @@ public class Person {
 		return email;
 	}
 	
-	private String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	
@@ -68,7 +71,7 @@ public class Person {
 		if(password.isEmpty()){
 			throw new IllegalArgumentException("No password given");
 		}
-		this.password = password;
+		this.password = setHashedPassword(password);
 	}
 
 	public String getFirstName() {
@@ -96,5 +99,23 @@ public class Person {
 	@Override
 	public String toString(){
 		return getFirstName() + " " + getLastName() + ": " + getUserid() + ", " + getEmail();
-	}	
+	}
+
+	public String setHashedPassword(String password) {
+
+		return password;
+	}
+	public void setSalt(String salt){
+		this.salt = salt;
+	}
+	public void setSalt(byte[] salt) {
+		if(salt == null){
+			throw new DomainException("The salt of a person can't be empty");
+		}
+		this.salt = new BigInteger(1,salt).toString(16);
+	}
+
+	public String getSalt() {
+		return salt;
+	}
 }
