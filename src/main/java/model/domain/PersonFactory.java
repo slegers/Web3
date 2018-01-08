@@ -19,7 +19,7 @@ public class PersonFactory {
             p.setEmail(result.getString("email"));
             p.setFirstName(result.getString("fname"));
             p.setLastName(result.getString("lname"));
-            p.setPassword(result.getString("password"));
+            p.setAlreadyHashedPassword(result.getString("password"));
             p.setSalt(result.getString("salt"));
         } catch (SQLException e) {
             throw new DbException("Couldn't retrieve the persoon_id" + e.getMessage());
@@ -37,9 +37,10 @@ public class PersonFactory {
         processFirstName(p,request,fouten);
         processLastName(p,request,fouten);
         processEmail(p,request,fouten);
-        processPassWord(p,request,fouten);
         SecureRandom r = new SecureRandom();
         p.setSalt(r.generateSeed(16));
+        processPassWord(p,request,fouten);
+
         return p;
     }
 

@@ -80,7 +80,7 @@ public class productSqlDb implements dbProductInterface {
             preparedStatement.setDouble(3,product.getPrice());
             preparedStatement.execute();
             preparedStatement.close();
-            connection.close()
+            connection.close();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }

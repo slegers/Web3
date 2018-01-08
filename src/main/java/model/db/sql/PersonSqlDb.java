@@ -34,6 +34,7 @@ public class PersonSqlDb implements dbPersonInterface {
     @Override
     public Person get(int personId) {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,properties);
             preparedStatement = connection.prepareStatement("select * from persoon where persoon_id = ?");
             preparedStatement.setInt(1,personId);
@@ -46,6 +47,8 @@ public class PersonSqlDb implements dbPersonInterface {
             return  p;
         } catch (SQLException e) {
             throw new DbException("Couldn't get this specific person " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new DbException("The postgres driver wasn't found");
         }
     }
 
@@ -74,19 +77,21 @@ public class PersonSqlDb implements dbPersonInterface {
     @Override
     public void add(Person person) {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,properties);
-            preparedStatement = connection.prepareStatement("INSERT INTO persoon(persoon_id,email,fname,lname,password,salt) values(?,?,?,?,?,?)");
-            preparedStatement.setInt(1,person.getUserid());
-            preparedStatement.setString(2,person.getEmail());
-            preparedStatement.setString(3,person.getFirstName());
-            preparedStatement.setString(4,person.getLastName());
-            preparedStatement.setString(5,person.getPassword());
-            preparedStatement.setString(6,person.getSalt());
+            preparedStatement = connection.prepareStatement("INSERT INTO persoon(email,fname,lname,password,salt) values(?,?,?,?,?)");
+            preparedStatement.setString(1,person.getEmail());
+            preparedStatement.setString(2,person.getFirstName());
+            preparedStatement.setString(3,person.getLastName());
+            preparedStatement.setString(4,person.getPassword());
+            preparedStatement.setString(5,person.getSalt());
             preparedStatement.execute();
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
             throw new DbException("Couldn't get this specific person " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new DbException("The postgres driver wasn't found");
         }
     }
 
@@ -98,6 +103,7 @@ public class PersonSqlDb implements dbPersonInterface {
     @Override
     public void delete(int personId) {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,properties);
             preparedStatement = connection.prepareStatement("DELETE FROM PERSOON where persoon_id = ?");
             preparedStatement.setInt(1,personId);
@@ -106,6 +112,8 @@ public class PersonSqlDb implements dbPersonInterface {
             connection.close();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new DbException("The postgres driver wasn't found");
         }
     }
 }

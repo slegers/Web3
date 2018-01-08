@@ -28,11 +28,13 @@ public class RegisterHandler extends ShopServiceRequestHandler {
         }catch (DbException e){
             fouten.add(e.getMessage());
         }
-
         if(fouten.size() == 0){
             response.sendRedirect("/ShopController?action=home");
 
         }else{
+            for (String f: fouten){
+                System.out.println(f);
+            }
             request.setAttribute("fouten",fouten);
             request.getRequestDispatcher("signUp.jsp").forward(request,response);
         }

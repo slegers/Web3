@@ -1,6 +1,9 @@
 package model.domain;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,12 +105,22 @@ public class Person {
 	}
 
 	public String setHashedPassword(String password) {
-
-		return password;
+		try {
+			MessageDigest crypt = MessageDigest.getInstance("SHA-512");
+			crypt.reset();
+			crypt.update(salt.getBytes("UTF-8"));
+			crypt.update(password.getBytes("UTF-8"));
+			return new BigInteger(1,crypt.digest()).toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			throw new DomainException("Het encryptie algoritme wordt niet ondersteund");
+		} catch (UnsupportedEncodingException e) {
+			throw new DomainException("Het encryptie algoritme wordt niet ondersteund");
+		}
 	}
 	public void setSalt(String salt){
 		this.salt = salt;
 	}
+
 	public void setSalt(byte[] salt) {
 		if(salt == null){
 			throw new DomainException("The salt of a person can't be empty");
@@ -117,5 +130,9 @@ public class Person {
 
 	public String getSalt() {
 		return salt;
+	}
+
+	public void setAlreadyHashedPassword(String alreadyHashedPassword) {
+		this.password = alreadyHashedPassword;
 	}
 }
