@@ -22,6 +22,16 @@
         </h2>
 
     </header><main>
+    <c:if test="${fouten != null}">
+        <div class="alert-danger">
+            <ul>
+                <c:forEach items="${fouten}" var="fout">
+                    <li>${fout}</li>
+                </c:forEach>
+
+            </ul>
+        </div>
+    </c:if>
     <p>${tekst}</p>
 
 

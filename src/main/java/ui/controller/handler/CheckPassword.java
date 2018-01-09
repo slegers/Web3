@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CheckPassword extends ShopServiceRequestHandler {
     public CheckPassword(ShopService service) {
@@ -16,19 +17,24 @@ public class CheckPassword extends ShopServiceRequestHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Person p = null;
         try{
-            Person p = getShopService().getPerson(Integer.parseInt(request.getParameter("id")));
+            p = getShopService().getPerson(Integer.parseInt(request.getParameter("id")));
             String s;
            if(p.isCorrectPassword(request.getParameter("password"))){
                s= "Password is OK";
            }else{
                s = "Password is NOK";
            }
-           request.setAttribute("person",p);
            request.setAttribute("tekst",s);
-           request.getRequestDispatcher("checkPass.jsp").forward(request,response);
         }catch (NumberFormatException e){
             throw new DomainException("The id can't be converted to an integer");
+        }catch (IllegalArgumentException e){
+            ArrayList<String> f = new ArrayList<>();
+            f.add(e.getMessage());
+            request.setAttribute("fouten",f);
         }
+        request.setAttribute("person",p);
+        request.getRequestDispatcher("checkPass.jsp").forward(request,response);
     }
 }
