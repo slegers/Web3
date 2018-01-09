@@ -22,6 +22,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Delete</th>
+            <th>Check</th>
         </tr>
         <c:forEach var="person" items="${persons}">
             <tr>
@@ -29,6 +30,7 @@
                 <td>${person.firstName}</td>
                 <td>${person.lastName}</td>
                 <td><a href="/ShopController?action=deletePersonPage&id=${person.userid}">Delete</a></td>
+                <td><a href="/ShopController?action=checkPasswordHandlerPage&id=${person.userid}">Check</a></td>
             </tr>
         </c:forEach>
         <caption>Users Overview</caption>

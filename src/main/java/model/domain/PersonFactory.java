@@ -40,7 +40,6 @@ public class PersonFactory {
         SecureRandom r = new SecureRandom();
         p.setSalt(r.generateSeed(16));
         processPassWord(p,request,fouten);
-
         return p;
     }
 
