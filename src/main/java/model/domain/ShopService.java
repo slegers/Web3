@@ -57,4 +57,8 @@ public class ShopService {
 	public void deleteProduct(int id) {
 		productDb.delete(id);
 	}
+
+    public Person getPersonByEmail(String email) {
+		return personDb.getPersonByEmail(email);
+    }
 }

@@ -85,6 +85,12 @@ public class ShopController extends HttpServlet {
                 case "changeColor":
                     handler = new CColor(service);
                   break;
+                case "login":
+                    handler = new Login(service);
+                    break;
+                case "logout":
+                    handler = new Logout(service);
+                    break;
                 default:
                     handler = new HomeHandler(service);
                     break;

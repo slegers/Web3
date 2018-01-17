@@ -100,5 +100,4 @@ public class PersonFactory {
             fouten.add(e.getMessage());
         }
     }
-
 }

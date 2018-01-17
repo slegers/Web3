@@ -21,12 +21,32 @@
 			<h2>Home</h2>
 
 		</header>
-		<main> Sed ut perspiciatis unde omnis iste natus error sit
-		voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-		ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-		dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-		aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-		qui ratione voluptatem sequi nesciunt. </main>
+		<main>
+			<c:if test="${fouten != null}">
+				<div class="alert-danger">
+					<ul>
+						<c:forEach items="${fouten}" var="fout">
+							<li>${fout}</li>
+						</c:forEach>
+
+					</ul>
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.user == null}">
+				<form action="ShopController?action=login" method="post">
+					<p><label for="email">Email</label><input type="email" id="email" name="email" required value=""></p>
+					<p><label for="password">Password</label><input type="password" id="password"  name="password"
+																	required> </p>
+					<input type="submit" value="login">
+				</form>
+			</c:if>
+			<c:if test="${sessionScope.user != null}">
+				<p> Hello, ${sessionScope.user.firstName}</p>
+				<form action="ShopController?action=logout" method="post">
+					<input type="submit" value="logout">
+				</form>
+			</c:if>
+		</main>
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>

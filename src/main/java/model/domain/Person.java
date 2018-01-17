@@ -117,7 +117,7 @@ public class Person {
 			throw new DomainException("Het encryptie algoritme wordt niet ondersteund");
 		}
 	}
-	
+
 	public void setSalt(String salt){
 		this.salt = salt;
 	}
@@ -136,4 +136,5 @@ public class Person {
 	public void setAlreadyHashedPassword(String alreadyHashedPassword) {
 		this.password = alreadyHashedPassword;
 	}
+
 }

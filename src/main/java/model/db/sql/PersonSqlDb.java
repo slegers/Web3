@@ -6,6 +6,7 @@ import model.domain.Person;
 import model.domain.PersonFactory;
 import model.domain.Product;
 import model.domain.ProductFactory;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.servlet.ServletContext;
 import javax.validation.constraints.Null;
@@ -112,6 +113,27 @@ public class PersonSqlDb implements dbPersonInterface {
             connection.close();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new DbException("The postgres driver wasn't found");
+        }
+    }
+
+    @Override
+    public Person getPersonByEmail(String email){
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(url,properties);
+            preparedStatement = connection.prepareStatement("select * from persoon where email = ?");
+            preparedStatement.setString(1,email.toLowerCase());
+            result = preparedStatement.executeQuery();
+            PersonFactory factory = new PersonFactory();
+            result.next();
+            Person p = factory.create(result);
+            preparedStatement.close();
+            connection.close();
+            return  p;
+        } catch (SQLException e) {
+            throw new DbException("Couldn't get this specific person " + e.getMessage());
         } catch (ClassNotFoundException e) {
             throw new DbException("The postgres driver wasn't found");
         }

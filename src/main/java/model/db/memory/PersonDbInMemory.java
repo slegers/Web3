@@ -3,6 +3,7 @@ package model.db.memory;
 import model.db.DbException;
 import model.db.dbPersonInterface;
 import model.domain.Person;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,5 +56,10 @@ public class PersonDbInMemory implements dbPersonInterface {
 	
 	public void delete(int personId){
 		persons.remove(personId);
+	}
+
+	@Override
+	public Person getPersonByEmail(String email){
+		return null;
 	}
 }
