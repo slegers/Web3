@@ -41,11 +41,11 @@
      </c:if>
         <!-- novalidate in order to be able to run tests correctly -->
         <p><label for="name">Name</label><input type="text" id="name" name="name"
-                                                           required value="${product.name}"> </p>
+                                                           required value="<c:out value='${product.name}'/>"> </p>
         <p><label for="description">Description</label><input type="text" id="description" name="description"
-                                                         required value="${product.description}"> </p>
+                                                         required value="<c:out value='${product.description}'/>"> </p>
         <p><label for="price">Price</label><input type="number" id="price" name="price"
-                                                              required value="${product.price}"> </p>
+                                                              required value="<c:out value='${product.price}'/>"> </p>
         <p><input type="submit" id="signUp" value="Sign Up"></p>
 
     </form>
