@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Sign Up</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/<c:out value='${cookie.color.value}'/>">
 </head>
 <body>
 <div id="container">
@@ -49,9 +50,6 @@ Sign Up
         
     </form>
 </main>
-<footer>
-&copy; Webontwikkeling 3, UC Leuven-Limburg
-</footer>
-</div>
+    <%@ include file="footer.jsp"%></div>
 </body>
 </html>

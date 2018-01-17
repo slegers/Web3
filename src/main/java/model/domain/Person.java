@@ -117,6 +117,7 @@ public class Person {
 			throw new DomainException("Het encryptie algoritme wordt niet ondersteund");
 		}
 	}
+	
 	public void setSalt(String salt){
 		this.salt = salt;
 	}

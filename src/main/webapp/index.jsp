@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/<c:out value='${cookie.color.value}'/>">
 </head>
 <body>
 	<div id="container">
@@ -24,7 +27,7 @@
 		dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
 		aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
 		qui ratione voluptatem sequi nesciunt. </main>
-		<footer> &copy; Webontwikkeling 3, UC Leuven-Limburg </footer>
+		<%@ include file="footer.jsp"%>
 	</div>
 </body>
 </html>

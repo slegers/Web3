@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import ui.controller.handler.*;
 @WebServlet("/ShopController")
 public class ShopController extends HttpServlet {
     private ShopService service;
@@ -35,7 +35,7 @@ public class ShopController extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         try {
             String action = request.getParameter("action");
-            ShopServiceRequestHandler handler = null;
+            ShopServiceRequestHandler handler = new HomeHandler(service);
             switch (action){
                 case "home":
                     handler = new HomeHandler(service);
@@ -82,6 +82,9 @@ public class ShopController extends HttpServlet {
                 case "checkPassword":
                     handler = new CheckPassword(service);
                     break;
+                case "changeColor":
+                    handler = new CColor(service);
+                  break;
                 default:
                     handler = new HomeHandler(service);
                     break;
@@ -91,6 +94,8 @@ public class ShopController extends HttpServlet {
             throw new DomainException("De gevraagde pagina kon niet worden gevonden. " + e.getMessage());
         } catch (IOException e) {
             throw new DomainException("De gevraagde pagina kon niet worden gevonden. " + e.getMessage());
+        }catch (NoClassDefFoundError e){
+            e.printStackTrace();
         }
     }
 
