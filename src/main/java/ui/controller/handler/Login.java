@@ -21,12 +21,11 @@ public class Login extends ShopServiceRequestHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        try{
-           System.out.println(request.getParameter("email"));
            Person p = getShopService().getPersonByEmail(request.getParameter("email"));
         if(p != null && p.isCorrectPassword(request.getParameter("password"))){
             HttpSession s  = request.getSession();
             s.setAttribute("user",p);
-            request.getRequestDispatcher("index.jsp").forward(request,response);
+            response.sendRedirect("/ShopController?action=home");
         }else{
             ArrayList<String> fouten = new ArrayList<>();
             fouten.add("Het emailadres en/of passwoord is fout");

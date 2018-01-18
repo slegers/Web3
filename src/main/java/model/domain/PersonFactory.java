@@ -1,13 +1,13 @@
 package model.domain;
 
 import model.db.DbException;
+import model.domain.exceptions.DomainException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class PersonFactory {
 
@@ -21,6 +21,7 @@ public class PersonFactory {
             p.setLastName(result.getString("lname"));
             p.setAlreadyHashedPassword(result.getString("password"));
             p.setSalt(result.getString("salt"));
+            p.setRole(result.getString("role"));
         } catch (SQLException e) {
             throw new DbException("Couldn't retrieve the persoon_id" + e.getMessage());
         } catch (NumberFormatException e){
@@ -40,6 +41,8 @@ public class PersonFactory {
         SecureRandom r = new SecureRandom();
         p.setSalt(r.generateSeed(16));
         processPassWord(p,request,fouten);
+        //Set the customer role by default
+        p.setRole("customer");
         return p;
     }
 

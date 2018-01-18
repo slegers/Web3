@@ -1,6 +1,6 @@
 package ui.controller.handler;
 
-import model.domain.DomainException;
+import model.domain.exceptions.DomainException;
 import model.domain.Person;
 import model.domain.ShopService;
 

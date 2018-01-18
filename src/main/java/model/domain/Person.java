@@ -1,5 +1,7 @@
 package model.domain;
 
+import model.domain.exceptions.DomainException;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -14,14 +16,16 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private String salt;
+	private Role role;
 
-	public Person(int userid, String email, String password, String firstName, String lastName,byte[] salt) {
+	public Person(int userid, String email, String password, String firstName, String lastName,byte[] salt,String role) {
 		setUserid(userid);
 		setEmail(email);
-		setPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setSalt(salt);
+		setPassword(password);
+		setRole(role);
 	}
 	
 	public Person() {
@@ -137,4 +141,14 @@ public class Person {
 		this.password = alreadyHashedPassword;
 	}
 
+	public void setRole(String role){
+		if(role == null || role.trim().isEmpty()){
+			throw new NullPointerException("The role parameter can't be null in setRole");
+		}
+		this.role = Role.getRole(role);
+	}
+
+	public Role getRole(){
+		return this.role;
+	}
 }

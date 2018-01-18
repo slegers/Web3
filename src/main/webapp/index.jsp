@@ -42,7 +42,7 @@
 			</c:if>
 			<c:if test="${sessionScope.user != null}">
 				<p> Hello, ${sessionScope.user.firstName}</p>
-				<form action="ShopController?action=logout" method="post">
+				<form action="/ShopController?action=logout" method="post">
 					<input type="submit" value="logout">
 				</form>
 			</c:if>

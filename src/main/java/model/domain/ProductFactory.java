@@ -1,5 +1,7 @@
 package model.domain;
 
+import model.domain.exceptions.DomainException;
+
 import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
 import java.sql.SQLException;

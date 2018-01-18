@@ -1,8 +1,7 @@
 package ui.controller.handler;
 
-import model.domain.DomainException;
+import model.domain.exceptions.DomainException;
 import model.domain.ShopService;
-import ui.controller.handler.ShopServiceRequestHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

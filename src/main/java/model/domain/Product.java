@@ -1,5 +1,7 @@
 package model.domain;
 
+import model.domain.exceptions.DomainException;
+
 public class Product {
 	private int productId;
 	private String name;

@@ -46,7 +46,7 @@
                                                          required value="<c:out value='${product.description}'/>"> </p>
         <p><label for="price">Price</label><input type="number" id="price" name="price"
                                                               required value="<c:out value='${product.price}'/>"> </p>
-        <p><input type="submit" id="signUp" value="Sign Up"></p>
+        <p><input type="submit" id="signUp" value="Add product"></p>
 
     </form>
 </main>

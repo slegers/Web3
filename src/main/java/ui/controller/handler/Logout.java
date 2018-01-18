@@ -15,6 +15,6 @@ public class Logout extends ShopServiceRequestHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate();
-        response.sendRedirect(request.getHeader("Referer"));
+        response.sendRedirect("/ShopController?action=home");
     }
 }

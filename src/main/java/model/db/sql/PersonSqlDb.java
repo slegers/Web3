@@ -2,10 +2,7 @@ package model.db.sql;
 
 import model.db.DbException;
 import model.db.dbPersonInterface;
-import model.domain.Person;
-import model.domain.PersonFactory;
-import model.domain.Product;
-import model.domain.ProductFactory;
+import model.domain.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.servlet.ServletContext;
@@ -80,12 +77,13 @@ public class PersonSqlDb implements dbPersonInterface {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,properties);
-            preparedStatement = connection.prepareStatement("INSERT INTO persoon(email,fname,lname,password,salt) values(?,?,?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO persoon(email,fname,lname,password,salt,role) values(?,?,?,?,?,?)");
             preparedStatement.setString(1,person.getEmail());
             preparedStatement.setString(2,person.getFirstName());
             preparedStatement.setString(3,person.getLastName());
             preparedStatement.setString(4,person.getPassword());
             preparedStatement.setString(5,person.getSalt());
+            preparedStatement.setString(6, "customer");
             preparedStatement.execute();
             preparedStatement.close();
             connection.close();

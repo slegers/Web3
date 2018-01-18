@@ -1,6 +1,6 @@
 package ui.controller;
 
-import model.domain.DomainException;
+import model.domain.exceptions.DomainException;
 import model.domain.ShopService;
 import ui.controller.handler.*;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import ui.controller.handler.*;
+
 @WebServlet("/ShopController")
 public class ShopController extends HttpServlet {
     private ShopService service;
