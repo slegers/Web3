@@ -107,6 +107,12 @@ public class ShopController extends HttpServlet {
                 case "confirmOrder":
                     handler = new ConfirmOrder(service);
                     break;
+                case "pay":
+                    handler = new pay(service);
+                    break;
+                case "payConfirmed":
+                    handler = new payConfirmed(service);
+                    break;
                 default:
                     handler = new HomeHandler(service);
                     break;

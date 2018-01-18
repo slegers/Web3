@@ -65,7 +65,7 @@
         <p> The number of <a href="/ShopController?action=showCart">cart </a> items is: ${numbCartItems}</p>
         <c:if test="${numbCartItems  != 0}">
             <form method="post" action="/ShopController?action=pay">
-                <input type="submit" name="Confirm">
+                <input type="submit" value="Confirm">
             </form>
         </c:if>
     </main>

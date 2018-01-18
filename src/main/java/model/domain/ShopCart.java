@@ -38,4 +38,8 @@ public class ShopCart {
     public void delete(int id) {
         shopCart.remove(id);
     }
+
+    public void pay() {
+        shopCart.clear();
+    }
 }

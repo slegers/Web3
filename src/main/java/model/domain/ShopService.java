@@ -59,4 +59,8 @@ public class ShopService {
     public Person getPersonByEmail(String email) {
 		return personDb.getPersonByEmail(email);
     }
+
+    public void pay(Person p) {
+		p.getCart().pay();
+    }
 }
