@@ -36,7 +36,7 @@ public class ShopController extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         try {
             String action = request.getParameter("action");
-            ShopServiceRequestHandler handler = new HomeHandler(service);
+            ShopServiceRequestHandler handler;
             switch (action){
                 case "home":
                     handler = new HomeHandler(service);
@@ -85,12 +85,15 @@ public class ShopController extends HttpServlet {
                     break;
                 case "changeColor":
                     handler = new CColor(service);
-                  break;
+                    break;
                 case "login":
                     handler = new Login(service);
                     break;
                 case "logout":
                     handler = new Logout(service);
+                    break;
+                case "addToCart":
+                    handler = new AddToCart(service);
                     break;
                 default:
                     handler = new HomeHandler(service);

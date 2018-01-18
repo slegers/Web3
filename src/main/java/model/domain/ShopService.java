@@ -2,8 +2,6 @@ package model.domain;
 
 import model.db.dbPersonInterface;
 import model.db.dbProductInterface;
-import model.db.memory.PersonDbInMemory;
-import model.db.memory.ProductDbInMemory;
 import model.db.sql.PersonSqlDb;
 import model.db.sql.productSqlDb;
 

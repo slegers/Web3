@@ -20,12 +20,13 @@ public class ProductOverviewHandler extends ShopServiceRequestHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("products",getShopService().getProducts());
-
         ArrayList<Role> roles = new ArrayList<>();
         roles.add(Role.admin);
         roles.add(Role.customer);
         Person p = (Person) request.getSession().getAttribute("user");
+        int numbOfCartItems = p.getNumbOfCartItems();
         if(p != null && p.hasAccess(roles)){
+            request.setAttribute("cartItems",numbOfCartItems);
             request.getRequestDispatcher("productOverview.jsp").forward(request,response);
         }else{
             throw new NotAuthorizedException("De persoon in kwestie is niet toegelaten " +

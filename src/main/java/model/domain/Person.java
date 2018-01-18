@@ -18,6 +18,7 @@ public class Person {
 	private String lastName;
 	private String salt;
 	private Role role;
+	private ShopCart cart = new ShopCart();
 
 	public Person(int userid, String email, String password, String firstName, String lastName,byte[] salt,String role) {
 		setUserid(userid);
@@ -27,6 +28,7 @@ public class Person {
 		setSalt(salt);
 		setPassword(password);
 		setRole(role);
+
 	}
 	
 	public Person() {
@@ -159,5 +161,13 @@ public class Person {
 			}
 		}
 		return false;
+	}
+
+	public void addToCart(Product p, CartItem cartItem) {
+		cart.add(p,cartItem);
+	}
+
+	public int getNumbOfCartItems() {
+		return cart.getSize();
 	}
 }
