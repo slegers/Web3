@@ -175,8 +175,8 @@ public class Person {
 		return cart;
 	}
 
-	public int getPriceCart() {
-		int price = 0;
+	public double getPriceCart() {
+		double price = 0;
 		for(CartItem c : getCart().getItems()){
 			price += c.getQuantity() * c.getProduct().getPrice();
 		}

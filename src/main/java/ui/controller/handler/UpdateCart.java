@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class updateCart extends ShopServiceRequestHandler {
-    public updateCart(ShopService service) {
+public class UpdateCart extends ShopServiceRequestHandler {
+    public UpdateCart(ShopService service) {
         super(service);
     }
 

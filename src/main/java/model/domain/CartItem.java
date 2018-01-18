@@ -4,7 +4,6 @@ public class CartItem {
 
     private Product product;
     private int quantity;
-
     public CartItem(){
 
     }
@@ -30,5 +29,8 @@ public class CartItem {
     }
     public int getQuantity(){
         return quantity;
+    }
+    public double getPrice(){
+        return quantity * product.getPrice();
     }
 }
