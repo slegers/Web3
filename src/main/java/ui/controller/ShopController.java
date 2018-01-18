@@ -2,6 +2,7 @@ package ui.controller;
 
 import model.domain.exceptions.DomainException;
 import model.domain.ShopService;
+import model.domain.exceptions.NotAuthorizedException;
 import ui.controller.handler.*;
 
 import javax.servlet.ServletException;
@@ -102,6 +103,8 @@ public class ShopController extends HttpServlet {
             throw new DomainException("De gevraagde pagina kon niet worden gevonden. " + e.getMessage());
         }catch (NoClassDefFoundError e){
             e.printStackTrace();
+        }catch (NotAuthorizedException e){
+            throw new NotAuthorizedException("U hebt niet de juiste rechten om deze pagina te bekijken. ");
         }
     }
 

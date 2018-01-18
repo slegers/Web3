@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -148,7 +149,15 @@ public class Person {
 		this.role = Role.getRole(role);
 	}
 
-	public Role getRole(){
-		return this.role;
+	public String getRole(){
+		return this.role.name().toLowerCase();
+	}
+	public boolean hasAccess(ArrayList<Role> allowedRoles){
+		for(Role r : allowedRoles){
+			if(r.equals(this.role)){
+				return true;
+			}
+		}
+		return false;
 	}
 }
