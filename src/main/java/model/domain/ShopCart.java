@@ -10,13 +10,13 @@ public class ShopCart {
     public ShopCart(){
         shopCart = new HashMap<>();
     }
-    public void add(Product p, CartItem cartItem) {
-        if(shopCart.containsKey(p.getProductId())){
-            CartItem item = shopCart.get(p.getProductId());
+    public void add(CartItem cartItem) {
+        if(shopCart.containsKey(cartItem.getProduct().getProductId())){
+            CartItem item = shopCart.get(cartItem.getProduct().getProductId());
             item.setQuantity(item.getQuantity() + cartItem.getQuantity());
-            shopCart.put(p.getProductId(),item);
+            shopCart.put(cartItem.getProduct().getProductId(),item);
         }else{
-            shopCart.put(p.getProductId(),cartItem);
+            shopCart.put(cartItem.getProduct().getProductId(),cartItem);
         }
     }
 
@@ -25,5 +25,17 @@ public class ShopCart {
     }
     public Collection<CartItem> getItems(){
         return  shopCart.values();
+    }
+
+    public void replace(CartItem cartItem) {
+        shopCart.put(cartItem.getProduct().getProductId(),cartItem);
+    }
+
+    public void delete(CartItem cartItem) {
+        shopCart.remove(cartItem.getProduct().getProductId());
+    }
+
+    public void delete(int id) {
+        shopCart.remove(id);
     }
 }

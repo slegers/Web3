@@ -98,6 +98,12 @@ public class ShopController extends HttpServlet {
                 case "showCart":
                     handler = new ShowCart(service);
                     break;
+                case "updateCart":
+                    handler = new updateCart(service);
+                    break;
+                case "deleteFromCart":
+                    handler = new deleteFromCart(service);
+                    break;
                 default:
                     handler = new HomeHandler(service);
                     break;

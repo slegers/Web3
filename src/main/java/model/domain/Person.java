@@ -163,8 +163,8 @@ public class Person {
 		return false;
 	}
 
-	public void addToCart(Product p, CartItem cartItem) {
-		cart.add(p,cartItem);
+	public void addToCart(CartItem cartItem) {
+		cart.add(cartItem);
 	}
 
 	public int getNumbOfCartItems() {
@@ -173,5 +173,25 @@ public class Person {
 
 	public ShopCart getCart() {
 		return cart;
+	}
+
+	public int getPriceCart() {
+		int price = 0;
+		for(CartItem c : getCart().getItems()){
+			price += c.getQuantity() * c.getProduct().getPrice();
+		}
+		return price;
+	}
+
+	public void replaceInCart(CartItem cartItem) {
+		getCart().replace(cartItem);
+	}
+
+	public void deleteInCart(CartItem cartItem) {
+		getCart().delete(cartItem);
+	}
+
+	public void deleteInCart(int id) {
+		getCart().delete(id);
 	}
 }

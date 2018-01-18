@@ -33,7 +33,7 @@
                 <th>Description</th>
                 <th>Price</th>
                 <c:if test="${sessionScope.user.role == 'admin'}">
-                    <th>Delete</th>
+                    <th>Delete Product</th>
                 </c:if>
                 <th>Quantity</th>
                 <th>Buy?</th>

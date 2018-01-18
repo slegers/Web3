@@ -1,6 +1,4 @@
 package ui.controller.handler;
-
-import com.thoughtworks.selenium.condition.Not;
 import model.domain.Person;
 import model.domain.Role;
 import model.domain.ShopService;
@@ -26,12 +24,12 @@ public class ShowCart extends ShopServiceRequestHandler {
           roles.add(Role.admin);
           roles.add(Role.customer);
           if (p != null && p.hasAccess(roles)) {
+              request.setAttribute("numbCartItems",p.getNumbOfCartItems());
+              request.setAttribute("totalAmount",p.getPriceCart());
               request.getRequestDispatcher("shopCart.jsp").forward(request, response);
           }
       }catch (NotAuthorizedException e){
           throw new NotAuthorizedException(e.getMessage());
       }
-
-
     }
 }

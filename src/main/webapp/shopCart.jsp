@@ -40,6 +40,8 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Change</th>
+                <th>Delete?</th>
 
             </tr>
             <c:forEach var="cartItem" items="${cartItems}">
@@ -47,13 +49,22 @@
                     <td>${cartItem.product.name}</td>
                     <td>${cartItem.product.description}</td>
                     <td>${cartItem.product.price}</td>
-                    <form action="" method="post">
+                    <form action="/ShopController?action=updateCart&id=${cartItem.product.productId}" method="post">
                         <td><input type="number" value="<c:out value="${cartItem.quantity}"/>" name="quantity"></td>
+                        <td><input type="submit" value="change"> </td>
                     </form>
+                    <td><a href="/ShopController?action=deleteFromCart&id=${cartItem.product.productId}">Delete from Cart</a></td>
                 </tr>
             </c:forEach>
             <caption>Product cart Overview</caption>
         </table>
+        <p>Total amount: ${totalAmount}</p>
+        <p> The number of <a href="/ShopController?action=showCart">cart </a> items is: ${numbCartItems}</p>
+        <c:if test="${totalAmount} != 0}">
+            <form method="post" action="/ShopController?action=pay">
+                <input type="submit" name="Pay">
+            </form>
+        </c:if>
     </main>
     <%@ include file="footer.jsp"%>
 </div>
