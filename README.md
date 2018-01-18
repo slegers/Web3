@@ -1,6 +1,7 @@
 # Webontwikkeling 3
 Deze repo bevat de website, de theorie en de labs die gemaakt moesten worden voor het project webontwikkeling 3. 
 
+## Web.xml
 Dit is een mavenproject gemaakt in Intellij. Om dit project te doen werken moet
 er nog wel een web.xml file worden gemaakt. De paramaters van deze file zijn: 
 ```xml
@@ -37,4 +38,18 @@ er nog wel een web.xml file worden gemaakt. De paramaters van deze file zijn:
         <param-value>secretpass</param-value>
     </context-param>
 </web-app>
-``` 
+```
+
+## Sql tables
+
+##### Persoon
+| persoon_id    | fname | lname  | email | password | salt | role |
+|:-------------: |:----:| :-----:|:-----:|:-------: |:----:|:----:|
+| serial | varchar(30) | varchar(30)  | varchar(50) | varchar(128) | varchar(40) | varchar(20) 
+
+##### Product
+| id_product    | naam | omschrijving  | prijs | 
+|:-------------:|:----:|:-------------:|:-----:|
+| serial | varchar(30) | varchar(200)  | real | 
+
+
