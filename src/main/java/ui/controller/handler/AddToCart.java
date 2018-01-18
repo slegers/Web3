@@ -22,10 +22,10 @@ public class AddToCart extends ShopServiceRequestHandler {
         processQuantity(request,fouten,cartItem);
         Product p = getProduct(request,cartItem,fouten);
         if(fouten.size() > 0){
-            addToCart(request,p,fouten,cartItem);
             request.setAttribute("fouten",fouten);
             request.getRequestDispatcher("productOverview.jsp").forward(request,response);
         }else{
+            addToCart(request,p,fouten,cartItem);
             response.sendRedirect("ShopController?action=productOverview");
         }
     }

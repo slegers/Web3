@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: yanice
+  Date: 18/01/2018
+  Time: 17:59
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -13,7 +20,7 @@
         <h1><span>Web shop</span></h1>
         <%@ include file="nav.jspf"%>
 
-        <h2>Prouct overview</h2>
+        <h2>Shopcatw</h2>
 
     </header>
     <main>
@@ -32,32 +39,24 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <c:if test="${sessionScope.user.role == 'admin'}">
-                    <th>Delete</th>
-                </c:if>
                 <th>Quantity</th>
-                <th>Buy?</th>
 
             </tr>
-            <c:forEach var="product" items="${products}">
+            <c:forEach var="cartItem" items="${cartItems}">
                 <tr>
-                    <td><a href="/ShopController?action=updateProductPage&id=${product.productId}"> ${product.name} </a></td>
-                    <td>${product.description}</td>
-                    <td>${product.price}</td>
-                    <c:if test="${sessionScope.user.role == 'admin'}">
-                    <td><a href="ShopController?action=deleteProductPage&id=${product.productId}">delete</a> </td>
-                    </c:if>
-                    <form action="ShopController?action=addToCart&id=${product.productId}" method="post">
-                        <td></ts><input type="number" value="1" name="quantity"></td>
-                        <td></ts><input type="submit" value="Add to cart"></td>
+                    <td>${cartItem.product.name}</td>
+                    <td>${cartItem.product.description}</td>
+                    <td>${cartItem.product.price}</td>
+                    <form action="" method="post">
+                        <td><input type="number" value="<c:out value="${cartItem.quantity}"/>" name="quantity"></td>
                     </form>
                 </tr>
             </c:forEach>
-            <caption>Users Overview</caption>
+            <caption>Product cart Overview</caption>
         </table>
-        <p> The number of <a href="/ShopController?action=showCart">cart </a> items is: ${cartItems}</p>
     </main>
     <%@ include file="footer.jsp"%>
 </div>
 </body>
 </html>
+

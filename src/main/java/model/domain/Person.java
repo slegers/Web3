@@ -170,4 +170,8 @@ public class Person {
 	public int getNumbOfCartItems() {
 		return cart.getSize();
 	}
+
+	public ShopCart getCart() {
+		return cart;
+	}
 }
